@@ -15,8 +15,11 @@
 
                     <div class="card-body" v-if="seen">{{ selectedFact.supplement }}</div>
 
-                    <button v-on:click="seen = !seen">Show Answer</button>
+                    <button v-if="!seen" v-on:click="seen = !seen">Show Answer</button>
                 </div>
+            </div>
+            <div class="col-md-8 mt-2">
+                <button class="align-middle" v-on:click="another">Another Question</button>
             </div>
         </div>
     </div>
@@ -28,8 +31,7 @@
             console.log('Component mounted.')
         },
         created() {
-            const idx = Math.floor(Math.random() * this.facts.length);
-            this.selectedFact = this.facts[idx]
+            this.another()
         },
         data() {
             return {
@@ -51,5 +53,12 @@
                 ]
             }
         },
+        methods: {
+            another() {
+                this.seen = false
+                const idx = Math.floor(Math.random() * this.facts.length);
+                this.selectedFact = this.facts[idx];
+            }
+        }
     }
 </script>

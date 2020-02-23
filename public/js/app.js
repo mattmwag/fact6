@@ -1965,13 +1965,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   created: function created() {
-    var idx = Math.floor(Math.random() * this.facts.length);
-    this.selectedFact = this.facts[idx];
+    this.another();
   },
   data: function data() {
     return {
@@ -1989,6 +1991,13 @@ __webpack_require__.r(__webpack_exports__);
         supplement: "They are mostly in Utah."
       }]
     };
+  },
+  methods: {
+    another: function another() {
+      this.seen = false;
+      var idx = Math.floor(Math.random() * this.facts.length);
+      this.selectedFact = this.facts[idx];
+    }
   }
 });
 
@@ -37439,18 +37448,28 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  _vm.seen = !_vm.seen
-                }
-              }
-            },
-            [_vm._v("Show Answer")]
-          )
+          !_vm.seen
+            ? _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.seen = !_vm.seen
+                    }
+                  }
+                },
+                [_vm._v("Show Answer")]
+              )
+            : _vm._e()
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8 mt-2" }, [
+        _c(
+          "button",
+          { staticClass: "align-middle", on: { click: _vm.another } },
+          [_vm._v("Another Question")]
+        )
       ])
     ])
   ])
@@ -49645,7 +49664,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('question-component', __webpack_require__(/*! ./components/QuestionComponent */ "./resources/js/components/QuestionComponent.vue")["default"]);
+Vue.component('question-component', __webpack_require__(/*! ./components/QuestionComponent.vue */ "./resources/js/components/QuestionComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49841,26 +49860,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***********************************!*\
+  !*** multi ./resources/js/app.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/matthewmarcus/quiz6/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/matthewmarcus/quiz6/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/matthewmarcus/quiz6/resources/js/app.js */"./resources/js/app.js");
 
 
 /***/ })
