@@ -59,6 +59,7 @@
                     supplement: this.supplement,
                     id: this.user,
                 });
+                window.location = '/home';
             }
         },
         props: ['user']

@@ -1968,6 +1968,7 @@ __webpack_require__.r(__webpack_exports__);
         supplement: this.supplement,
         id: this.user
       });
+      window.location = '/home';
     }
   },
   props: ['user']
