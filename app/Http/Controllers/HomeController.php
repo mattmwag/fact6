@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function create(Request $request)
     {
         $f = new Fact();
-        $f->fact = $request->fact;
+        $f->question = $request->question;
         $f->answer = $request->answer;
         $f->supplementary = $request->supplement;
         $f->owner_id = $request->id;
@@ -44,7 +44,7 @@ class HomeController extends Controller
     
     public function facts()
     {
-        $facts = Fact::all();
+        $facts = Fact::with('creator')->get();
         return $facts;
     }
 }

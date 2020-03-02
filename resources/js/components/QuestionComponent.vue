@@ -2,11 +2,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header" v-if="selectedFact.tags">{{ 'selectedFact.tags? selectedFact.tags.join(", ")' }}</div>
+                <div class="card" v-if="selectedFact">
+                    <div class="card-header">{{ selectedFact.creator.name }} on {{ selectedFact.created_at | formatDate }}</div>
+                    <div class="card-header" v-if="selectedFact.tags">{{ selectedFact.tags? selectedFact.tags.join(", ") : '' }}</div>
 
                     <div class="card-body">
-                        {{ selectedFact.fact }}
+                        {{ selectedFact.question }}
                     </div>
 
                     <div class="card-body" v-if="seen">
@@ -18,7 +19,7 @@
                     <button v-if="!seen" v-on:click="seen = !seen">Show Answer</button>
                 </div>
             </div>
-            <div class="col-md-8 mt-2">
+            <div class="col-md-8 mt-2" v-if="selectedFact">
                 <button class="align-middle" v-on:click="another">Another Question</button>
             </div>
         </div>
@@ -27,6 +28,13 @@
 
 <script>
     import axios from 'axios';
+    import moment from 'moment';
+
+    Vue.filter('formatDate', function(value) {
+        if (value) {
+            return moment(String(value)).format('MM/DD/YYYY')
+        }
+    });
 
     export default {
         mounted() {

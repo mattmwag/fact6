@@ -6,8 +6,8 @@
                     <div class="card-header"></div>
 
                     <div class="card-body">
-                        <label for="fact">Fact</label><br/>
-                        <textarea id="fact" v-model="fact"></textarea>
+                        <label for="fact">Question</label><br/>
+                        <textarea id="fact" v-model="question"></textarea>
                     </div>
 
                     <div class="card-body" >
@@ -41,20 +41,20 @@
         },
         data() {
             return {
-                fact: '',
+                question: '',
                 answer: '',
                 supplement: ''
             }
         },
         computed: {
             validated: function() {
-                return this.fact && this.answer && this.supplement
+                return this.question && this.answer && this.supplement
             }
         },
         methods: {
             submit: function() {
                 axios.post('/add', {
-                    fact: this.fact,
+                    question: this.question,
                     answer: this.answer,
                     supplement: this.supplement,
                     id: this.user,

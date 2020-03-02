@@ -15,7 +15,7 @@ class AddFactTable extends Migration
     {
         Schema::create('facts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('fact');
+            $table->text('question');
             $table->text('answer');
             $table->text('supplementary');
             $table->bigInteger('owner_id');
