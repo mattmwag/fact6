@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <add-component user="{{ auth()->id() }}"></add-component>
+                    <add-component user="{{ auth()->id() }}" tags="{{ $tags }}"></add-component>
                 </div>
             </div>
         </div>

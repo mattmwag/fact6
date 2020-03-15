@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Fact;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,14 +23,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($tag = null)
     {
-        return view('home');
+        return view('home')->with(compact('tag'));
     }
     
     public function add()
     {
-        return view('add');
+        $tags = Tag::all();
+        return view('add')->with(compact('tags'));
     }
     
     public function create(Request $request)
@@ -40,11 +42,12 @@ class HomeController extends Controller
         $f->supplementary = $request->supplement;
         $f->owner_id = $request->id;
         $f->save();
+        $f->tags()->sync($request->tags);
     }
     
-    public function facts()
+    public function facts($tag = null)
     {
-        $facts = Fact::with('creator')->get();
+        $facts = Fact::with('creator', 'tags')->tagged($tag)->get();
         return $facts;
     }
 }

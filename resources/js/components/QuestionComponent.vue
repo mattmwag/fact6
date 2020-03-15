@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card" v-if="selectedFact">
                     <div class="card-header">{{ selectedFact.creator.name }} on {{ selectedFact.created_at | formatDate }}</div>
-                    <div class="card-header" v-if="selectedFact.tags">{{ selectedFact.tags? selectedFact.tags.join(", ") : '' }}</div>
+                    <div class="card-header" v-if="selectedFact.tags">{{ selectedFact.tags? selectedFact.tags.map(tag => tag.name).join(', ') : '' }}</div>
 
                     <div class="card-body">
                         {{ selectedFact.question }}
@@ -41,7 +41,7 @@
             console.log('Component mounted.')
         },
         created() {
-            axios.get('/facts')
+            axios.get('/facts/' + this.tag)
                 .then(response => {
                     this.facts = response.data
                     this.another()
@@ -60,6 +60,7 @@
                 const idx = Math.floor(Math.random() * this.facts.length);
                 this.selectedFact = this.facts[idx];
             }
-        }
+        },
+        props: ['tag']
     }
 </script>

@@ -21,13 +21,13 @@ Route::get('add', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/{tag?}', 'HomeController@index')->name('home');
 
 Route::get('/add', 'HomeController@add')->name('add');
 
 Route::post('/add', 'HomeController@create')->name('create');
 
-Route::get('/facts', 'HomeController@facts')->name('facts');
+Route::get('/facts/{tag?}', 'HomeController@facts')->name('facts');
 
 
 

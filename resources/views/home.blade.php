@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <question-component></question-component>
+                    <question-component tag="{{ $tag }}"></question-component>
                 </div>
             </div>
         </div>

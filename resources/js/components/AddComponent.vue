@@ -20,6 +20,20 @@
                         <textarea id="supplement" v-model="supplement"></textarea>
                     </div>
 
+                    <div class="card-body">
+                        <label for="tags">Tags</label><br/>
+                        <div id="tag" v-for="tag in JSON.parse(tags)">
+                            <input type="checkbox"
+                                   :id="tag.name"
+                                   :value="tag.id"
+                                   v-model="checkedTags"
+                                   />
+                            <label :for="tag.id">{{tag.name}}</label>
+                        </div>
+                    </div>
+                    <div>
+                        {{checkedTags}}
+                    </div>
                     <button
                             :disabled="!validated"
                             v-on:click="submit"
@@ -43,7 +57,8 @@
             return {
                 question: '',
                 answer: '',
-                supplement: ''
+                supplement: '',
+                checkedTags: [],
             }
         },
         computed: {
@@ -58,10 +73,14 @@
                     answer: this.answer,
                     supplement: this.supplement,
                     id: this.user,
+                    tags: this.checkedTags
                 });
                 window.location = '/home';
+            },
+            slugify: function(tag) {
+                return tag.toLowerCase().replace('/', '_');
             }
         },
-        props: ['user']
+        props: ['user', 'tags']
     }
 </script>
